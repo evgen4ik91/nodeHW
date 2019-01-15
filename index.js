@@ -5,8 +5,6 @@ const port = 3000;
 
 const news = require('./news.json');
 
-let newObj = {news: 'new', id: news.length};
-
 function getTime() {
     return new Date().toLocaleString(undefined, {
         hour: '2-digit',
