@@ -1,4 +1,18 @@
-[{
+[
+{
+"id": 0,
+"source": {
+"id": "bbc-news",
+"name": "BBC News"
+},
+"author": "BBC News",
+"title": "Turkey: Trump threats will not work",
+"description": "The US president has vowed to \"devastate\" Turkey's economy if it attacks Kurdish fighters in Syria.",
+"url": "http://www.bbc.co.uk/news/world-europe-46860902",
+"urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/7FCD/production/_105171723_mediaitem105171488.jpg",
+"publishedAt": "2019-01-14T12:24:59Z",
+"content": "Image copyright AFP Image caption Syrian Kurds have been protesting against Turkish threats to carry out a new offensive Turkey has dismissed President Donald Trump's threat to \"devastate\" its economy if it attacks Kurdish forces in Syria following a planned … [+4869 chars]"
+},{
 "id": 1,
 "source": {
 "id": "bbc-news",
