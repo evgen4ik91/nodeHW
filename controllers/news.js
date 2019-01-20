@@ -18,17 +18,27 @@ router.route('/:newsId')
     .get((req, res) => res.send(news[req.params.newsId]))
     .put((req, res) => {
 		try {
-			let id = req.params.newsId
-			news[id] = {...news[id], ...req.query};
-			res.send(news[id]);
+			if (req.body) {
+				let id = req.params.newsId
+				news[id] = {...news[id], ...req.body};
+				res.send(news[id]);
+			} else {
+				res.send(news);
+				throw new Error('Body is empty');
+			}
 		} catch(err) {
 			console.log(err);
 		}
     })
     .delete((req, res) => {
 		try {
-			news.splice(req.params.newsId,1);
-			res.send(news);
+			let newsID = req.params.newsId;
+			if (newsID >= 0) {
+				news.splice(newsID,1);
+				res.send(news[newsID]);
+			} else {
+				throw new Error('incorrect ID');
+			}
 		} catch(err) {
 			console.log(err);
 		}
