@@ -7,12 +7,12 @@ class Database {
     }
 
     connect(user, pass) {
-        return new Promise((res,rej) => {
-            let creds = user && pass ? `${user}:${pass}@` : '';
-            let db = mongoose.connection;
+        let creds = user && pass ? `${user}:${pass}@` : '';
+        let db = mongoose.connection;
             
-            db.once('open', () => console.log(`db '${this.dbname}' connected successfull`));
-
+        db.once('open', () => console.log(`db '${this.dbname}' connected successfull`));
+        
+        return new Promise((res,rej) => {    
             mongoose.connect(`mongodb://${creds}${this.addr}/${this.dbname}`,{ useNewUrlParser: true })
                 .then(()=>{
                     db.on('error', console.error.bind(console, 'connection error:'));
