@@ -8,9 +8,8 @@ class Database {
 
     connect(user, pass) {
         let creds = user && pass ? `${user}:${pass}@` : '';
-        console.log(`mongodb://${creds}${this.addr}/${this.dbname}`);
         global.db = mongoose.createConnection(`mongodb://${creds}${this.addr}/${this.dbname}`, {useNewUrlParser: true}, err => {
-            if (err) throw new Error('err');
+            if (err) throw new Error(`cannot connect to db ${this.dbname}`);
             console.log(`successfully connected to db ${this.dbname}`);
         });
 
