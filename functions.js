@@ -9,4 +9,13 @@ let getTime = function() {
     });
 }
 
-module.exports.getTime = getTime
+let checkAuth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).send('Not authorized!');
+    }
+}
+
+module.exports.checkAuth = checkAuth;
+module.exports.getTime = getTime;

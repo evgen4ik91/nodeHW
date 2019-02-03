@@ -10,4 +10,4 @@ let Schema = new mongoose.Schema({
     },
     fbID: String,
 })
-module.exports = db.model('users', Schema)
+module.exports = mongoose.model('users', Schema)

@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const auth = require('../auth');
+const passport = require('passport');
 
 const News = require('../schema/news');
+const checkAuth = require('../functions').checkAuth;
 
 router.route('/')
     .get((req,res) => {
@@ -21,22 +22,26 @@ router.route('/')
 			})
 	});
 	
-router.use(auth.authenticate('local'));
 router.route('/:newsId')
     .get((req, res) => {
 		News.find({ id:req.params.newsId })
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
 	})
-    .put((req,res) => {
+    .put(checkAuth, (req,res) => {
 		News.updateOne({ id:req.params.newsId }, req.body)
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
     })
-    .delete((req,res) => {
+    .delete(checkAuth, (req,res) => {
 		News.deleteOne({ id:req.params.newsId })
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
 	})
+
+router.route('/login')
+	.post(passport.authenticate('local', {session: true}), (req,res) => {
+		res.send('ok');
+	});
 	
 module.exports = router;

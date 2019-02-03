@@ -11,4 +11,4 @@ let Schema = new mongoose.Schema({
     text: String,
     date: Date,
 })
-module.exports = db.model('news', Schema)
+module.exports = mongoose.model('news', Schema)
