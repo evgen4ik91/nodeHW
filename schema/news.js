@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 let Schema = new mongoose.Schema({
-    id: String,
-    title: String,
+    id: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
     text: String,
     date: Date,
 })

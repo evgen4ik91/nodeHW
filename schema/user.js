@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 let Schema = new mongoose.Schema({
-    name: String,
+    username: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
     fbID: String,
-    login: String,
-    pass: String,
 })
-module.exports = db.model('user', Schema)
+module.exports = db.model('users', Schema)

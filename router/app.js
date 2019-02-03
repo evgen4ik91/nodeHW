@@ -8,6 +8,7 @@ router.use(function timeLog (req, res, next) {
 });
 
 router.use('/news', require('../controllers/news'));
+router.use('/users', require('../controllers/users'));
 
 router.use('*', (req, res) => {
     res.status(404).json({ok: false});

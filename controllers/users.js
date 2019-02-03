@@ -1,40 +1,38 @@
 const router = require('express').Router();
-const auth = require('../auth');
 
-const News = require('../schema/news');
+const User = require('../schema/user');
 
 router.route('/')
-    .get((req,res) => {
-		News.find({})
+	.get((req,res) => {
+		User.find({})
 			.then(docs => {
 				res.send(docs);
 			}).catch(err => console.log(err));
 	})
-    .post((req,res) => {
-		new News(req.body).save()
+	.post((req,res) => {
+		new User(req.body).save()
 			.then(() => {
-				console.log('news saved');
+				console.log('user saved');
 				res.send(req.body);
 			}).catch(err => {
 				res.send(null);
 				console.log(err);
 			})
 	});
-	
-router.use(auth.authenticate('local'));
-router.route('/:newsId')
-    .get((req, res) => {
-		News.find({ id:req.params.newsId })
+
+router.route('/:username')
+	.get((req, res) => {
+		User.find({ id:req.params.username })
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
 	})
-    .put((req,res) => {
-		News.updateOne({ id:req.params.newsId }, req.body)
+	.put((req,res) => {
+		User.updateOne({ id:req.params.username }, req.body)
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
-    })
-    .delete((req,res) => {
-		News.deleteOne({ id:req.params.newsId })
+	})
+	.delete((req,res) => {
+		User.deleteOne({ id:req.params.username })
 			.then(docs => res.send(docs))
 			.catch(err => console.log(err));
 	})
