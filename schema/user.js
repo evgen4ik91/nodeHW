@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 let Schema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: false
     },
     password: {
         type: String,
-        required: true,
+        required: false,
     },
-    fbID: String,
+    facebookId: String,
 })
-module.exports = mongoose.model('users', Schema)
+module.exports = mongoose.model('users', Schema);

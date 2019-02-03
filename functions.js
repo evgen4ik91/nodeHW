@@ -1,4 +1,4 @@
-let getTime = function() {
+module.exports.getTime = () => {
     return new Date().toLocaleString(undefined, {
         hour: '2-digit',
         minute: '2-digit',
@@ -7,15 +7,14 @@ let getTime = function() {
         month: 'short',
         year: 'numeric',
     });
-}
+};
 
-let checkAuth = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.status(401).send('Not authorized!');
-    }
-}
+module.exports.checkAuth = (req, res, next) => {
+    if (req.isAuthenticated()) next();
+    else res.status(401).send('Not authorized!');
+};
 
-module.exports.checkAuth = checkAuth;
-module.exports.getTime = getTime;
+module.exports.timeLog = (req, res, next) => {
+    console.log(`${req.method}: ${req.url} Time: ${this.getTime()}`);
+    next();
+};

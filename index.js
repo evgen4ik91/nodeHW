@@ -4,6 +4,8 @@ const session = require('express-session')
 const passport = require('passport');
 const Database = require('./db');
 const auth = require('./auth');
+const authLocal = auth.local;
+const authFB = auth.fb;
 
 const app = express();
 const port = 3000;
@@ -22,12 +24,13 @@ let newsdb = new Database(undefined, 'news').connect()
         app.use(passport.initialize());
         app.use(passport.session());
         app.use(require('./router/app'));
-        passport.use(auth);
-        passport.serializeUser(function(user, done) {
-            done(null, user);
-          });
-        passport.deserializeUser(function(user, done) {
+        passport.use(authLocal);
+        passport.use(authFB);
+        passport.serializeUser((user, done) => {
             done(null, user);
         });
-        app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+        passport.deserializeUser((user, done) => {
+            done(null, user);
+        });
+        app.listen(port, () => console.log(`News app listening on port ${port}!`));
     }).catch(err => console.log(err));
