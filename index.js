@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const session = require('express-session')
+const session = require('express-session');
+const cors = require('cors');
 const passport = require('passport');
 const Database = require('./db');
 const auth = require('./auth');
@@ -9,6 +10,8 @@ const authFB = auth.fb;
 
 const app = express();
 const port = 3000;
+
+app.use(cors);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

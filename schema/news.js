@@ -8,7 +8,10 @@ let Schema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    text: String,
-    date: Date,
+    content: String,
+    author: String,
+    publishedAt: Date,
+    url: String,
+    urlToImage: String,
 })
 module.exports = mongoose.model('news', Schema)

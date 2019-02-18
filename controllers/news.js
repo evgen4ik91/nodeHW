@@ -4,7 +4,7 @@ const News = require('../schema/news');
 const checkAuth = require('../functions').checkAuth;
 
 router.route('/')
-	.get(checkAuth, (req,res) => {
+	.get((req,res) => {
 		News.find({})
 			.then(docs => {
 				res.send(docs);
@@ -13,8 +13,8 @@ router.route('/')
 	.post((req,res) => {
 		new News(req.body).save()
 			.then(() => {
-				console.log('news saved');
-				res.send(req.body);
+				console.log('article saved');
+				res.send('OK');
 			}).catch(err => {
 				res.send(null);
 				console.log(err);
