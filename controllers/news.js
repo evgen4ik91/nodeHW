@@ -14,7 +14,7 @@ router.route('/')
 		new News(req.body).save()
 			.then(() => {
 				console.log('article saved');
-				res.send('');
+				res.send('OK');
 			}).catch(err => {
 				res.send(null);
 				console.log(err);
