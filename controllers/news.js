@@ -14,7 +14,7 @@ router.route('/')
 		new News(req.body).save()
 			.then(() => {
 				console.log('article saved');
-				res.send('OK');
+				res.send(req.body);
 			}).catch(err => {
 				res.send(null);
 				console.log(err);
@@ -30,12 +30,12 @@ router.route('/:newsId')
 	.put(/*checkAuth,*/ (req,res) => {
 		News.updateOne({ id:req.params.newsId }, req.body)
 			.then(docs => res.send(docs))
-			.catch(err => console.log(err));
+			.catch(err => res.send(null));
 	})
 	.delete(/*checkAuth,*/ (req,res) => {
 		News.deleteOne({ id:req.params.newsId })
 			.then(docs => res.send(docs))
-			.catch(err => console.log(err));
+			.catch(err => res.send(null));
 	});
 	
 module.exports = router;
